@@ -1,0 +1,18 @@
+-- Create ENUM for roles
+CREATE TYPE user_role AS ENUM ('ADMIN','MANAGER','EMPLOYEE');
+
+-- Create table
+CREATE TABLE accounts_user (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(128) NOT NULL,
+    email VARCHAR(254),
+    first_name VARCHAR(150) NOT NULL DEFAULT '',
+    last_name VARCHAR(150) NOT NULL DEFAULT '',
+    role user_role NOT NULL DEFAULT 'EMPLOYEE',
+    is_superuser BOOLEAN NOT NULL DEFAULT FALSE,
+    is_staff BOOLEAN NOT NULL DEFAULT FALSE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    last_login TIMESTAMP WITH TIME ZONE,
+    date_joined TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
